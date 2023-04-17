@@ -14,9 +14,17 @@ const { NotImplementedError } = require('../extensions/index.js');
  * For 00-1B-63-84-45-E6, the output should be true.
  *
  */
-function isMAC48Address(/* n */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function isMAC48Address(n) {
+  function isMacFormatG(n) {
+      for (let i=0; i<n.length; i++) {
+        if (n[i]>='G') {
+          return false
+        }
+        return true;
+      }
+  } 
+  
+  return n[2]=='-' && n[5]=='-' && n[8]=='-' && n[11]=='-' && n[14]=='-' && isMacFormatG(n)? true : false;
 }
 module.exports = {
   isMAC48Address
